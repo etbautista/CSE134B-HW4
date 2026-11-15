@@ -46,6 +46,12 @@
     --light-400: #FFFDF5;
     --light-300: #FFFEFA;
 
+    --error: #ff3333;
+    --error-white: rgba(250, 200, 200);
+
+    --warning: #F7B217;
+    --warning-white: #ECCE8F;
+
     --shadow: rgba(0, 0, 0, 0.25);
 
     --smalltxt: rgba(229, 222, 210, 0.33);

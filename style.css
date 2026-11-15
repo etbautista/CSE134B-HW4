@@ -293,6 +293,33 @@ textarea:focus {
     border-color: var(--secondary-500);
 }
 
+footer form 
+input[type="text"]:user-invalid, 
+input[type="email"]:user-invalid, 
+textarea:user-invalid,
+input[type="text"].not-valid,
+input[type="email"].not-valid,
+.not-valid {
+    border-color: var(--error);
+    background-color: var(--error-white);
+}
+
+
+footer form 
+horizontal-container:has(+ :required) > .err-star {
+    display: block;
+}
+
+footer form 
+horizontal-container:has(+ :user-invalid) > .err-star {
+    color: var(--error);
+}
+
+footer form 
+horizontal-container:has(+ :user-valid) > .err-star {
+    display: none;
+}
+
 /* Targets the text submit button */
 form button {
     background-color: var(--secondary-500);
@@ -310,6 +337,40 @@ footer a {
     color: var(--tertiary-400);
     font-family: var(--font-primary);
     font-size: var(--step-1);
+}
+
+footer p {
+    color: var(--tertiary-400)
+}
+
+#name-char-ct,
+#email-char-ct,
+#msg-char-ct {
+    text-align: right;
+}
+
+footer error-field p{
+    color: var(--dark-700);
+}
+
+footer warning-field p{
+    color: var(--dark-700);
+}
+
+footer error-field {
+    display: none;
+    background-color: var(--error-white);
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 2px solid var(--error);
+}
+
+footer warning-field {
+    display: none;
+    background-color: var(--warning-white);
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 2px solid var(--warning);
 }
 
 /* Targets the link container in the footer */
