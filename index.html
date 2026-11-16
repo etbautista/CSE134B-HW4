@@ -6,6 +6,7 @@
     <title>ethanbautista.dev</title>
     <link rel="icon" href="public/assets/icons/signature.svg"/>
     <link rel="stylesheet" href="style.css"/>
+    
     <style>
         horizontal-container {
             display: flex;
@@ -15,6 +16,12 @@
             border: 1px solid red ;
         }
     </style>
+    <script>
+        const savedTheme = localStorage.getItem("theme") || "light"
+
+        console.log(savedTheme)
+        document.documentElement.setAttribute("data-theme", savedTheme);
+    </script>
 </head>
 <body>
     <nav>
@@ -25,12 +32,13 @@
             </svg>
         </a>
         <horizontal-container>
+            <button id="theme-change">Change Theme</button>
             <a href="about-me.html">{aboutMe}</a>
             <a href="projects-page.html">{projects}</a>
             <a href="/public/assets/EthanGBautista-Resume.pdf" download="EthanGBautista-Resume">{resume}</a>
             <a href="#contact">{contact}</a> 
-            <a href="experiments.html">experiments</a>
             <a href="form-no-js.html">contactNoJs</a>
+            <a href="form-with-js.html">contactWithJs</a>
         </horizontal-container>
     </nav>
 
@@ -59,44 +67,112 @@
             <h2>My Toolbox</h2>
             <p class="cosmetic-text">const techStach = {}</p>
             <horizontal-container>
-                <button>
+                <button id="left-arrow">
                     <img src="public/assets/icons/left.svg" alt="Slide Left">
                 </button>
-                <horizontal-container>
-                    <div class="tech-container">
-                        <hr>
-                            <img src="public/assets/icons/icon-placeholder.svg" alt="The HTML Logo">
-                            <p>HTML</p>
-                        <hr>
-                    </div>
-                    <div class="tech-container">
-                        <hr>
-                            <img src="public/assets/icons/icon-placeholder.svg" alt="The CSS Logo">
-                            <p>CSS</p>
-                        <hr>
-                    </div>
-                    <div class="tech-container">
-                        <hr>
-                            <img src="public/assets/icons/icon-placeholder.svg" alt="The JavaScript Logo">
-                            <p>JavaScript</p>
-                        <hr>
-                    </div>
-                    <div class="tech-container">
-                        <hr>
-                            <img src="public/assets/icons/icon-placeholder.svg" alt="The ReactJs Logo">
-                            <p>ReactJs</p>
-                        <hr>
-                    </div>
-                    <div class="tech-container">
-                        <hr>
-                            <img src="public/assets/icons/icon-placeholder.svg" alt="The ReactNative Logo">
-                            <p>ReactNative</p>
-                        <hr>
-                    </div>
+                <horizontal-container  id="tech-slider">
+                    <horizontal-container class="tech-page">
+                        <div class="tech-container">
+                            <hr>
+                                <img src="public/assets/icons/figma.svg" alt="The Figma Logo">
+                                <p>Figma</p>
+                            <hr>
+                        </div>
+                        <div class="tech-container">
+                            <hr>
+                                <img src="public/assets/icons/HTML5.svg" alt="The HTML Logo">
+                                <p>HTML</p>
+                            <hr>
+                        </div>
+                        <div class="tech-container">
+                            <hr>
+                                <img src="public/assets/icons/css-new.svg" alt="The CSS Logo">
+                                <p>CSS</p>
+                            <hr>
+                        </div>
+                        <div class="tech-container">
+                            <hr>
+                                <img src="public/assets/icons/javascript.svg" alt="The JavaScript Logo">
+                                <p>JavaScript</p>
+                            <hr>
+                        </div>
+                        <div class="tech-container">
+                            <hr>
+                                <img src="public/assets/icons/typescript.svg" alt="The TypeScript Logo">
+                                <p>TypeScript</p>
+                            <hr>
+                        </div>
+                    </horizontal-container>
+
+                    <horizontal-container class="tech-page">
+                        <div class="tech-container">
+                            <hr>
+                                <img src="public/assets/icons/React.svg" alt="The ReactJs Logo">
+                                <p>ReactJs</p>
+                            <hr>
+                        </div>
+                        <div class="tech-container">
+                            <hr>
+                                <img src="public/assets/icons/firebase.svg" width="" alt="The Firebase Logo">
+                                <p>Firebase</p>
+                            <hr>
+                        </div>
+                        <div class="tech-container">
+                            <hr>
+                                <img src="public/assets/icons/nextdotjs.svg" alt="The NextJs Logo">
+                                <p>Next.Js</p>
+                            <hr>
+                        </div>
+                        <div class="tech-container">
+                            <hr>
+                                <img src="public/assets/icons/Tailwind_CSS.svg" alt="The Tailwind CSS Logo">
+                                <p>Tailwind</p>
+                            <hr>
+                        </div>
+                        <div class="tech-container">
+                            <hr>
+                                <img src="public/assets/icons/java.svg" alt="The Java Logo">
+                                <p>Java</p>
+                            <hr>
+                        </div>
+                    </horizontal-container>
+
+                    <horizontal-container class="tech-page">
+                        <div class="tech-container">
+                            <hr>
+                                <img src="public/assets/icons/c.svg" alt="The C Logo">
+                                <p>C</p>
+                            <hr>
+                        </div>
+                        <div class="tech-container">
+                            <hr>
+                                <img src="public/assets/icons/c-plusplus.svg" alt="The C++ Logo">
+                                <p>C++</p>
+                            <hr>
+                        </div>
+                        <div class="tech-container">
+                            <hr>
+                                <img src="public/assets/icons/python.svg" alt="The Python Logo">
+                                <p>Python</p>
+                            <hr>
+                        </div>
+                        <div class="tech-container">
+                            <hr>
+                                <img src="public/assets/icons/React.svg" alt="The ReactNative Logo">
+                                <p>ReactNative</p>
+                            <hr>
+                        </div>
+                        <div class="tech-container">
+                            <hr>
+                                <img src="public/assets/icons/git.svg" alt="The Git Logo">
+                                <p>Git</p>
+                            <hr>
+                        </div>
+                    </horizontal-container>
                     
                 </horizontal-container>
-                <button>
-                    <img src="public/assets/icons/right.svg" alt="Slide Left Right ">
+                <button id="right-arrow">
+                    <img src="public/assets/icons/right.svg" alt="Slide Right ">
                 </button>
             </horizontal-container>
         </section>
@@ -278,5 +354,8 @@
 
         customElements.define("hello-log", HelloLog);
     </script>
+
+    <script src="theme-change.js" defer ></script>
+    <script src="slider.js" defer ></script>
 </body>
 </html>

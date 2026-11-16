@@ -3,13 +3,14 @@ const emailInput = document.getElementById("email");
 const msgInput = document.getElementById("message");
 const errorDisp = document.querySelector("error-field");
 const warnDisp = document.querySelector("warning-field");
-const form = document.querySelector("form");
 const nameErr = document.getElementById("name-err");
 const emailErr = document.getElementById("email-err");
+const form = document.querySelector("form");
 const msgErr = document.getElementById("msg-err");
 const nameWarn = document.getElementById("name-warn");
 const emailWarn = document.getElementById("email-warn");
 const msgWarn = document.getElementById("msg-warn");
+const submitButton = document.getElementById("form-submit");
 let nameErrorPresent = false;
 let emailErrorPresent = false;
 let msgErrorPresent = false;
@@ -44,7 +45,7 @@ nameInput.addEventListener("blur", () => {
 
     if(!nameInput.checkValidity()){
         if (nameInput.value.trim().length < 1) {
-            nameInput.setCustomValidity("Please enter a name longer than 1 character.");
+            nameInput.setCustomValidity(`Please enter a name longer than ${nameInput.minLength} character.`);
             nameInput.classList.add("not-valid");
         }
 
@@ -65,12 +66,23 @@ nameInput.addEventListener("blur", () => {
     }
 })
 
+nameInput.addEventListener("invalid", () => {
+    if (nameInput.validity.valueMissing) {
+        nameInput.setCustomValidity(`Please enter an name longer than ${nameInput.minLength} character.`);
+        nameErrorPresent = true;
+        nameErr.textContent = nameInput.validationMessage;
+        errorDisp.style.display = "block";
+        nameErr.style.display = "block";
+        nameErr.setAttribute('aria-invalid', 'true');
+    }
+})
+
 emailInput.addEventListener("input", () => {
     const characterCt = document.getElementById("email-char-ct")
     let characterLength = emailInput.value.trim().length;
 
     if (characterLength < emailInput.minLength){
-        emailInput.setCustomValidity(`Please enter an email longer than ${minLength} character.`);
+        emailInput.setCustomValidity(`Please enter an email longer than ${emailInput.minLength} character.`);
     
     } else if (characterLength > emailInput.maxLength - 10 && characterLength < emailInput.maxLength){
         warnDisp.style.display = "block";
@@ -95,7 +107,7 @@ emailInput.addEventListener("blur", () => {
 
     if(!emailInput.checkValidity()){
         if (emailInput.value.trim().length < 1) {
-            emailInput.setCustomValidity("Please enter an email longer than 1 character.");
+            emailInput.setCustomValidity(`Please enter an email longer than ${emailInput.minLength} character.`);
             emailInput.classList.add("not-valid");
         }
 
@@ -113,6 +125,17 @@ emailInput.addEventListener("blur", () => {
 
     if(!(nameErrorPresent || emailErrorPresent || msgErrorPresent)){
         errorDisp.style.display = "none"
+    }
+})
+
+emailInput.addEventListener("invalid", () => {
+    if (emailInput.validity.valueMissing) {
+        emailInput.setCustomValidity(`Please enter an email longer than ${emailInput.minLength} character.`);
+        emailErrorPresent = true;
+        emailErr.textContent = emailInput.validationMessage;
+        errorDisp.style.display = "block";
+        emailErr.style.display = "block";
+        emailErr.setAttribute('aria-invalid', 'true');
     }
 })
 
@@ -145,7 +168,7 @@ msgInput.addEventListener("blur", () => {
 
     if(!msgInput.checkValidity()){
         if (msgInput.value.trim().length < 1) {
-            msgInput.setCustomValidity("Please enter a message longer than 10 characters.");
+            msgInput.setCustomValidity(`Please enter a message longer than ${msgInput.minLength} characters.`);
             msgInput.classList.add("not-valid");
         } 
 
@@ -165,4 +188,33 @@ msgInput.addEventListener("blur", () => {
         errorDisp.style.display = "none"
 
     }
+})
+
+msgInput.addEventListener("invalid", (event) => {
+    if (msgInput.validity.valueMissing) {
+        msgInput.setCustomValidity(`Please enter a message longer than ${msgInput.minLength} characters.`);
+        msgErrorPresent = true;
+        msgErr.textContent = msgInput.validationMessage;
+        errorDisp.style.display = "block";
+        msgErr.style.display = "block";
+        msgErr.setAttribute('aria-invalid', 'true');
+        form_errors.push(event.target.validationMessage);
+    }
+})
+
+form.addEventListener("invalid", (event) => {
+    event.preventDefault();
+    
+
+    form_errors.push(`${event.target.name}: ${event.target.validationMessage}`);
+
+}, true)
+
+form.addEventListener("submit", () => {
+    const error_hist = form.querySelector('[name="form-errors"]');
+    const set = [...new Set(form_errors)]
+
+    error_hist.value = JSON.stringify(set);
+
+
 })

@@ -84,6 +84,16 @@ a:focus{
     color: var(--tertiary-400);
 }
 
+nav button {
+    background-color: var(--secondary-500);
+    border: none;
+    color: var(--tertiary-400);
+    font-family: var(--font-primary);
+    font-size: var(--step-0);
+    border-radius: 8px;
+    align-self: flex-end;
+    cursor: pointer;
+}
 
 header, main {
     padding: var(--space-l) var(--space-xl);
@@ -154,7 +164,7 @@ header horizontal-container {
 }
 
 .tech-container img {
-    width: var(--space-3xl);
+    height: var(--space-3xl);
 }
 
 
@@ -393,4 +403,36 @@ footer hr {
 footer small {
     font-family: var(--font-secondary);
     color: var(--smalltxt);
+}
+
+#tech-slider {
+    flex: 1;    
+}
+
+.tech-page {
+    view-transition-name: tech-page;
+}
+
+.tech-page[hidden] {
+    display: none;
+}
+
+::view-transition-group(tech-page) {
+    overflow: clip;
+}
+
+@keyframes out-to-left   { to   { transform: translateX(-100%); } }
+@keyframes out-to-right  { to   { transform: translateX(100%); } }
+@keyframes in-from-right { from { transform: translateX(100%); } }
+@keyframes in-from-left  { from { transform: translateX(-100%); } }
+
+html[data-direction="next"]::view-transition-old(tech-page) { animation: 400ms ease both out-to-left; }
+html[data-direction="next"]::view-transition-new(tech-page) { animation: 400ms ease both in-from-right; }
+html[data-direction="prev"]::view-transition-old(tech-page) { animation: 400ms ease both out-to-right; }
+html[data-direction="prev"]::view-transition-new(tech-page) { animation: 400ms ease both in-from-left; }
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
 }

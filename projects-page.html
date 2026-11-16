@@ -17,6 +17,12 @@
             gap: 24px
         }
     </style>
+    <script>
+        const savedTheme = localStorage.getItem("theme") || "light"
+
+        console.log(savedTheme)
+        document.documentElement.setAttribute("data-theme", savedTheme);
+    </script>
 </head>
 <body>
      <nav>
